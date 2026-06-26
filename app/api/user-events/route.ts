@@ -5,10 +5,11 @@ import {
   jsonError,
   requireUser
 } from "@/lib/api";
+import { getMockDb, saveMockDb, generateId } from "@/lib/mockDb";
 
 export async function POST(request: Request) {
   try {
-    const { supabase, user } = await requireUser();
+    const { user } = await requireUser();
     const body = (await request.json()) as Record<string, unknown>;
     const type = assertString(body.type, "type");
     const sessionId =
@@ -18,20 +19,19 @@ export async function POST(request: Request) {
     const payload =
       body.payload === undefined ? {} : assertObject(body.payload, "payload");
 
-    const { data: event, error } = await supabase
-      .from("user_events")
-      .insert({
-        user_id: user.id,
-        session_id: sessionId,
-        type,
-        payload
-      })
-      .select("id,user_id,session_id,type,payload,created_at")
-      .single();
-
-    if (error) {
-      throw error;
-    }
+    const db = await getMockDb();
+    
+    const event = {
+      id: generateId(),
+      user_id: user.id,
+      session_id: sessionId,
+      type,
+      payload,
+      created_at: new Date().toISOString()
+    };
+    
+    db.user_events.push(event);
+    await saveMockDb(db);
 
     return NextResponse.json({ event }, { status: 201 });
   } catch (error) {
@@ -41,26 +41,22 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
-    const { supabase } = await requireUser();
+    const { user } = await requireUser();
     const { searchParams } = new URL(request.url);
     const sessionId = searchParams.get("session_id");
     const limit = Number(searchParams.get("limit") ?? 50);
 
-    let query = supabase
-      .from("user_events")
-      .select("id,session_id,type,payload,created_at")
-      .order("created_at", { ascending: false })
-      .limit(Number.isFinite(limit) ? Math.min(Math.max(limit, 1), 200) : 50);
-
+    const db = await getMockDb();
+    let events = db.user_events.filter(e => e.user_id === user.id);
+    
     if (sessionId) {
-      query = query.eq("session_id", sessionId);
+      events = events.filter(e => e.session_id === sessionId);
     }
-
-    const { data: events, error } = await query;
-
-    if (error) {
-      throw error;
-    }
+    
+    events.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    
+    const maxLimit = Number.isFinite(limit) ? Math.min(Math.max(limit, 1), 200) : 50;
+    events = events.slice(0, maxLimit);
 
     return NextResponse.json({ events });
   } catch (error) {

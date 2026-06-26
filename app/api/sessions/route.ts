@@ -1,34 +1,24 @@
 import { NextResponse } from "next/server";
-import { jsonError, requireUser } from "@/lib/api";
-import type { Json } from "@/lib/types/database";
+import { getStore, saveStore, generateId } from "@/lib/store";
+import { requireUser, jsonError } from "@/lib/api";
 
 export async function POST(request: Request) {
   try {
-    const { supabase, user } = await requireUser();
-    const body = (await request.json().catch(() => ({}))) as {
-      metadata?: Json;
-    };
+    const { user } = await requireUser();
+    const body = (await request.json().catch(() => ({}))) as any;
+    const store = await getStore();
 
-    const { data: session, error } = await supabase
-      .from("sessions")
-      .insert({
-        user_id: user.id,
-        metadata: body.metadata ?? {}
-      })
-      .select("id,status,started_at,metadata")
-      .single();
-
-    if (error) {
-      throw error;
-    }
-
-    await supabase.from("user_events").insert({
+    const session = {
+      id: generateId(),
       user_id: user.id,
-      session_id: session.id,
-      type: "session_started",
-      payload: { metadata: session.metadata }
-    });
-
+      status: "active" as const,
+      scenario_history: [],
+      trait_confidence: {},
+      started_at: new Date().toISOString(),
+      metadata: body.metadata ?? {}
+    };
+    store.sessions.push(session);
+    await saveStore(store);
     return NextResponse.json({ session }, { status: 201 });
   } catch (error) {
     return jsonError(error);
@@ -37,16 +27,11 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const { supabase } = await requireUser();
-    const { data: sessions, error } = await supabase
-      .from("sessions")
-      .select("id,status,started_at,completed_at,metadata")
-      .order("started_at", { ascending: false });
-
-    if (error) {
-      throw error;
-    }
-
+    const { user } = await requireUser();
+    const store = await getStore();
+    const sessions = store.sessions
+      .filter(s => s.user_id === user.id)
+      .sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime());
     return NextResponse.json({ sessions });
   } catch (error) {
     return jsonError(error);
