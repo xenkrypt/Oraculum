@@ -3,38 +3,25 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import type { User } from "@supabase/supabase-js";
-import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 export function AuthStatus() {
   const router = useRouter();
-  const supabase = createSupabaseBrowserClient();
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    let isMounted = true;
-
-    supabase.auth.getUser().then(({ data }) => {
-      if (isMounted) {
-        setUser(data.user);
-      }
-    });
-
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      router.refresh();
-    });
-
-    return () => {
-      isMounted = false;
-      subscription.unsubscribe();
-    };
-  }, [router, supabase.auth]);
+    const match = document.cookie.match(new RegExp('(^| )oraculum\\.mock_user=([^;]+)'));
+    if (match) {
+      try {
+        const mockUser = JSON.parse(decodeURIComponent(match[2]));
+        setUser(mockUser);
+      } catch {}
+    } else {
+      setUser(null);
+    }
+  }, []);
 
   async function signOut() {
-    await supabase.auth.signOut();
+    document.cookie = "oraculum.mock_user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
     setUser(null);
     router.refresh();
     router.push("/");
@@ -44,7 +31,7 @@ export function AuthStatus() {
     return (
       <Link
         href="/auth"
-        className="rounded-md border border-ink/15 px-3 py-2 text-sm font-semibold hover:border-moss/60"
+        className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border-[3px] border-ink bg-white px-5 py-2 text-lg font-heading shadow-hard transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-signal hover:text-white hover:shadow-hard-lg"
       >
         Sign in
       </Link>
@@ -55,7 +42,7 @@ export function AuthStatus() {
     <button
       type="button"
       onClick={signOut}
-      className="rounded-md border border-ink/15 px-3 py-2 text-sm font-semibold hover:border-moss/60"
+      className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border-2 border-dashed border-ink bg-transparent px-4 py-2 text-lg font-heading transition hover:-rotate-2 hover:bg-mist"
     >
       Sign out
     </button>

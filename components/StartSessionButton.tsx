@@ -45,6 +45,7 @@ export function StartSessionButton() {
     if ("session" in payload) {
       localStorage.setItem("oraculum.activeSessionId", payload.session.id);
       setSessionId(payload.session.id);
+      window.location.reload(); // Force reload to start challenge wizard!
     }
   }
 
@@ -54,14 +55,14 @@ export function StartSessionButton() {
         type="button"
         onClick={createSession}
         disabled={isCreating}
-        className="rounded-md bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-moss disabled:cursor-not-allowed disabled:opacity-60"
+        className="rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border-[3px] border-ink bg-white px-6 py-3 text-xl font-heading shadow-hard transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-signal hover:text-white hover:shadow-hard-lg active:translate-x-1 active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isCreating ? "Creating..." : "Create session"}
+        {isCreating ? "Creating..." : "Start Assessment"}
       </button>
       {sessionId ? (
-        <p className="break-all text-sm text-moss">Active session: {sessionId}</p>
+        <p className="break-all text-lg font-body text-moss">Active session: {sessionId}</p>
       ) : null}
-      {error ? <p className="text-sm text-signal">{error}</p> : null}
+      {error ? <p className="text-lg font-heading text-signal">{error}</p> : null}
     </div>
   );
 }

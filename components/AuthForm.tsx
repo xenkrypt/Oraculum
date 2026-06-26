@@ -2,54 +2,56 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { PressButton } from "@/components/ui/Animate";
 
 export function AuthForm() {
   const router = useRouter();
-  const supabase = createSupabaseBrowserClient();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSubmitting(true);
-    setMessage(null);
 
-    const result =
-      mode === "signin"
-        ? await supabase.auth.signInWithPassword({ email, password })
-        : await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-              emailRedirectTo: `${window.location.origin}/auth`
-            }
-          });
+    // Mock Authentication — set cookie
+    const mockUser = {
+      id: "mock-user-" + Math.random().toString(36).substr(2, 9),
+      email,
+      display_name: email.split("@")[0]
+    };
 
-    setIsSubmitting(false);
+    document.cookie = `oraculum.mock_user=${encodeURIComponent(
+      JSON.stringify(mockUser)
+    )}; path=/; max-age=86400`;
 
-    if (result.error) {
-      setMessage(result.error.message);
-      return;
+    // Create a session immediately so the challenges page has a valid session ID
+    try {
+      const res = await fetch("/api/sessions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ metadata: { source: "auth_page", email } })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.session?.id) {
+          localStorage.setItem("oraculum.activeSessionId", data.session.id);
+        }
+      }
+    } catch {
+      // Non-blocking — challenges page will auto-create if missing
     }
 
-    setMessage(
-      mode === "signup"
-        ? "Account created. Confirm your email if your Supabase project requires it."
-        : "Signed in."
-    );
-    router.refresh();
+    setIsSubmitting(false);
     router.push("/challenges");
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid gap-2">
-        <label htmlFor="email" className="text-sm font-medium">
-          Email
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-2">
+        <label htmlFor="email" className="text-[10px] font-mono text-amber tracking-[0.2em] uppercase">
+          Email Identity
         </label>
         <input
           id="email"
@@ -58,12 +60,13 @@ export function AuthForm() {
           autoComplete="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="rounded-md border border-ink/15 px-4 py-3 outline-none transition focus:border-moss"
+          className="w-full bg-obsidian border border-parchment-faint px-4 py-3 font-mono text-sm text-parchment placeholder-parchment-dim/50 outline-none transition focus:border-amber/50 focus:bg-amber/5"
+          placeholder="sysop@oraculum.network"
         />
       </div>
-      <div className="grid gap-2">
-        <label htmlFor="password" className="text-sm font-medium">
-          Password
+      <div className="space-y-2">
+        <label htmlFor="password" className="text-[10px] font-mono text-amber tracking-[0.2em] uppercase">
+          Access Token
         </label>
         <input
           id="password"
@@ -73,30 +76,29 @@ export function AuthForm() {
           autoComplete={mode === "signin" ? "current-password" : "new-password"}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="rounded-md border border-ink/15 px-4 py-3 outline-none transition focus:border-moss"
+          className="w-full bg-obsidian border border-parchment-faint px-4 py-3 font-mono text-sm text-parchment placeholder-parchment-dim/50 outline-none transition focus:border-amber/50 focus:bg-amber/5"
+          placeholder="••••••••"
         />
       </div>
 
-      {message ? <p className="text-sm text-signal">{message}</p> : null}
-
-      <div className="flex flex-wrap items-center gap-3">
-        <button
+      <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-parchment-faint">
+        <PressButton
           type="submit"
           disabled={isSubmitting}
-          className="rounded-md bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-moss disabled:cursor-not-allowed disabled:opacity-60"
+          className="btn-amber px-8 py-3 text-sm uppercase tracking-[0.2em] disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {isSubmitting
-            ? "Working..."
+            ? "[ AUTHENTICATING ]"
             : mode === "signin"
-              ? "Sign in"
-              : "Create account"}
-        </button>
+              ? "Establish Link"
+              : "Generate Access"}
+        </PressButton>
         <button
           type="button"
           onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-          className="rounded-md border border-ink/15 px-5 py-3 text-sm font-semibold"
+          className="btn-ghost px-6 py-3 text-[10px] font-mono uppercase tracking-[0.2em]"
         >
-          {mode === "signin" ? "Need an account?" : "Already have one?"}
+          {mode === "signin" ? "Request Access ->" : "<- Return to Auth"}
         </button>
       </div>
     </form>
