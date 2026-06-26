@@ -1,0 +1,343 @@
+{
+  "sessions": [
+    {
+      "id": "id-xg6ez8fmk-1782408434780",
+      "user_id": "demo-user-001",
+      "status": "in_progress",
+      "started_at": "2026-06-25T17:27:14.780Z",
+      "completed_at": null,
+      "metadata": {
+        "source": "home_cta"
+      }
+    },
+    {
+      "id": "id-jqatxglz2-1782408436475",
+      "user_id": "demo-user-001",
+      "status": "completed",
+      "started_at": "2026-06-25T17:27:16.475Z",
+      "completed_at": "2026-06-25T17:27:43.756Z",
+      "metadata": {
+        "source": "home_cta"
+      }
+    },
+    {
+      "id": "id-5yctzxix5-1782408509877",
+      "user_id": "mock-user-0gqo83frv",
+      "status": "in_progress",
+      "started_at": "2026-06-25T17:28:29.877Z",
+      "completed_at": null,
+      "metadata": {
+        "source": "auth_page",
+        "email": "tharunkrishnath@gmail.com"
+      }
+    }
+  ],
+  "challenge_definitions": [
+    {
+      "id": "c1111111-1111-1111-1111-111111111111",
+      "slug": "scarce-resources",
+      "title": "Scarce Resources",
+      "type": "decision_tree",
+      "sort_order": 10,
+      "config": {
+        "prompt": "You have one weekend, three people depending on you, and a stalled project. What do you do first?",
+        "options": [
+          {
+            "id": "align",
+            "label": "Align everyone on the real constraint"
+          },
+          {
+            "id": "prototype",
+            "label": "Build a rough version immediately"
+          },
+          {
+            "id": "delegate",
+            "label": "Split the work and create checkpoints"
+          }
+        ]
+      },
+      "active": true
+    },
+    {
+      "id": "c2222222-2222-2222-2222-222222222222",
+      "slug": "ambiguous-opportunity",
+      "title": "Ambiguous Opportunity",
+      "type": "ranked_choice",
+      "sort_order": 20,
+      "config": {
+        "prompt": "A promising opportunity has unclear upside and social risk. Rank your first three moves.",
+        "moves": [
+          "Ask sharper questions",
+          "Test quietly",
+          "Bring in allies",
+          "Wait for proof",
+          "Make a visible bet"
+        ]
+      },
+      "active": true
+    },
+    {
+      "id": "c3333333-3333-3333-3333-333333333333",
+      "slug": "strategic-conflict",
+      "title": "Strategic Conflict",
+      "type": "decision_tree",
+      "sort_order": 30,
+      "config": {
+        "prompt": "Your team disagrees fundamentally on the product vision. How do you resolve this impasse?",
+        "options": [
+          {
+            "id": "data",
+            "label": "Run a 2-day user research test to gather fresh qualitative data"
+          },
+          {
+            "id": "executive",
+            "label": "Make the call yourself and explain your reasoning transparently"
+          },
+          {
+            "id": "consensus",
+            "label": "Facilitate a structured workshop to find a compromise"
+          }
+        ]
+      },
+      "active": true
+    },
+    {
+      "id": "c4444444-4444-4444-4444-444444444444",
+      "slug": "tactical-prioritization",
+      "title": "Tactical Prioritization",
+      "type": "ranked_choice",
+      "sort_order": 40,
+      "config": {
+        "prompt": "Your launch went viral but your servers are crashing. Rank your immediate actions.",
+        "moves": [
+          "Shut down non-critical features",
+          "Call all hands on deck",
+          "Communicate transparently with users",
+          "Auto-scale unconditionally",
+          "Triage the heaviest endpoints"
+        ]
+      },
+      "active": true
+    }
+  ],
+  "challenge_responses": [
+    {
+      "id": "id-3om6sdqvo-1782408441772",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "challenge_id": "c1111111-1111-1111-1111-111111111111",
+      "raw_response": {
+        "selected": "prototype",
+        "challenge_title": "Scarce Resources"
+      },
+      "created_at": "2026-06-25T17:27:21.772Z"
+    },
+    {
+      "id": "id-890pcdsz7-1782408454333",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "challenge_id": "c2222222-2222-2222-2222-222222222222",
+      "raw_response": {
+        "ranked": [
+          "Test quietly",
+          "Wait for proof",
+          "Make a visible bet",
+          "Ask sharper questions",
+          "Bring in allies"
+        ],
+        "challenge_title": "Ambiguous Opportunity"
+      },
+      "created_at": "2026-06-25T17:27:34.333Z"
+    },
+    {
+      "id": "id-vsxkq57xd-1782408457014",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "challenge_id": "c3333333-3333-3333-3333-333333333333",
+      "raw_response": {
+        "selected": "consensus",
+        "challenge_title": "Strategic Conflict"
+      },
+      "created_at": "2026-06-25T17:27:37.014Z"
+    },
+    {
+      "id": "id-ry7y1jgno-1782408462299",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "challenge_id": "c4444444-4444-4444-4444-444444444444",
+      "raw_response": {
+        "ranked": [
+          "Auto-scale unconditionally",
+          "Call all hands on deck",
+          "Shut down non-critical features",
+          "Communicate transparently with users",
+          "Triage the heaviest endpoints"
+        ],
+        "challenge_title": "Tactical Prioritization"
+      },
+      "created_at": "2026-06-25T17:27:42.299Z"
+    },
+    {
+      "id": "id-6quu67ci2-1782408515828",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-5yctzxix5-1782408509877",
+      "challenge_id": "c1111111-1111-1111-1111-111111111111",
+      "raw_response": {
+        "selected": "align",
+        "challenge_title": "Scarce Resources"
+      },
+      "created_at": "2026-06-25T17:28:35.828Z"
+    }
+  ],
+  "talent_profiles": [
+    {
+      "id": "id-so727cvop-1782408463756",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "dimension_scores": {
+        "analytical": 61,
+        "strategic": 88,
+        "creative": 83,
+        "leadership": 74,
+        "execution": 52,
+        "adaptability": 89,
+        "curiosity": 92,
+        "systems_thinking": 70
+      },
+      "summary_text": "You are a strategic explorer — you see possibility where others see ambiguity. Your curiosity is your superpower, constantly pulling you toward the edges of what is known. You thrive on novelty and resist premature closure.",
+      "hidden_talents": [
+        "Latent opportunity sensing",
+        "Cross-domain synthesis",
+        "Creative ambiguity tolerance"
+      ],
+      "confidence": 82,
+      "created_at": "2026-06-25T17:27:43.756Z",
+      "updated_at": "2026-06-25T17:27:43.756Z"
+    }
+  ],
+  "future_paths": [
+    {
+      "id": "id-zwtiv0wf0-1782408463756",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "paths": [
+        {
+          "title": "Product Strategist",
+          "description": "You are built for the product strategy role — you can hold both the big picture and the user&apos;s emotional reality simultaneously, which is extraordinarily rare."
+        },
+        {
+          "title": "Innovation Researcher",
+          "description": "Your curiosity and adaptability make you a natural at emerging-technology research roles where the playbook hasn&apos;t been written yet."
+        }
+      ],
+      "created_at": "2026-06-25T17:27:43.756Z",
+      "updated_at": "2026-06-25T17:27:43.756Z"
+    }
+  ],
+  "user_events": [
+    {
+      "id": "id-j2vi5dutu-1782408434781",
+      "user_id": "demo-user-001",
+      "session_id": "id-xg6ez8fmk-1782408434780",
+      "type": "session_started",
+      "payload": {
+        "metadata": {
+          "source": "home_cta"
+        }
+      },
+      "created_at": "2026-06-25T17:27:14.781Z"
+    },
+    {
+      "id": "id-qxderm6x3-1782408436475",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "type": "session_started",
+      "payload": {
+        "metadata": {
+          "source": "home_cta"
+        }
+      },
+      "created_at": "2026-06-25T17:27:16.475Z"
+    },
+    {
+      "id": "id-scgf69dsj-1782408441772",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "type": "challenge_completed",
+      "payload": {
+        "challenge_id": "c1111111-1111-1111-1111-111111111111",
+        "response_id": "id-3om6sdqvo-1782408441772"
+      },
+      "created_at": "2026-06-25T17:27:21.773Z"
+    },
+    {
+      "id": "id-dx09g7uhn-1782408454333",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "type": "challenge_completed",
+      "payload": {
+        "challenge_id": "c2222222-2222-2222-2222-222222222222",
+        "response_id": "id-890pcdsz7-1782408454333"
+      },
+      "created_at": "2026-06-25T17:27:34.333Z"
+    },
+    {
+      "id": "id-8xqu95bhe-1782408457014",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "type": "challenge_completed",
+      "payload": {
+        "challenge_id": "c3333333-3333-3333-3333-333333333333",
+        "response_id": "id-vsxkq57xd-1782408457014"
+      },
+      "created_at": "2026-06-25T17:27:37.014Z"
+    },
+    {
+      "id": "id-m9tf4b0hy-1782408462299",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "type": "challenge_completed",
+      "payload": {
+        "challenge_id": "c4444444-4444-4444-4444-444444444444",
+        "response_id": "id-ry7y1jgno-1782408462299"
+      },
+      "created_at": "2026-06-25T17:27:42.299Z"
+    },
+    {
+      "id": "id-p1citwzrm-1782408463756",
+      "user_id": "demo-user-001",
+      "session_id": "id-jqatxglz2-1782408436475",
+      "type": "talent_profile_generated",
+      "payload": {
+        "talent_profile_id": "id-so727cvop-1782408463756",
+        "future_paths_id": "id-zwtiv0wf0-1782408463756",
+        "confidence": 82
+      },
+      "created_at": "2026-06-25T17:27:43.756Z"
+    },
+    {
+      "id": "id-xe3180h61-1782408509877",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-5yctzxix5-1782408509877",
+      "type": "session_started",
+      "payload": {
+        "metadata": {
+          "source": "auth_page",
+          "email": "tharunkrishnath@gmail.com"
+        }
+      },
+      "created_at": "2026-06-25T17:28:29.877Z"
+    },
+    {
+      "id": "id-r4glblz2g-1782408515828",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-5yctzxix5-1782408509877",
+      "type": "challenge_completed",
+      "payload": {
+        "challenge_id": "c1111111-1111-1111-1111-111111111111",
+        "response_id": "id-6quu67ci2-1782408515828"
+      },
+      "created_at": "2026-06-25T17:28:35.828Z"
+    }
+  ]
+}

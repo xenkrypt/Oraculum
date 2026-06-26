@@ -1,0 +1,214 @@
+{
+  "sessions": [
+    {
+      "id": "id-wa5fyh1px-1782491646815",
+      "user_id": "mock-user-0gqo83frv",
+      "status": "completed",
+      "scenario_history": [],
+      "trait_confidence": {},
+      "started_at": "2026-06-26T16:34:06.816Z",
+      "metadata": {
+        "source": "challenges_adaptive"
+      },
+      "completed_at": "2026-06-26T16:35:28.341Z"
+    }
+  ],
+  "behavior_events": [],
+  "shadow_twins": [],
+  "talent_profiles": [
+    {
+      "id": "profile-t0y88e460-1782491728341",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "dimension_scores": {
+        "analytical": 61,
+        "strategic": 88,
+        "creative": 83,
+        "leadership": 74,
+        "execution": 52,
+        "adaptability": 89,
+        "curiosity": 92,
+        "systems_thinking": 70
+      },
+      "summary_text": "You are a strategic explorer — you see possibility where others see ambiguity. Your curiosity is your superpower, constantly pulling you toward the edges of what is known.",
+      "hidden_talents": [
+        "Latent opportunity sensing",
+        "Cross-domain synthesis",
+        "Creative ambiguity tolerance"
+      ],
+      "confidence": 82,
+      "created_at": "2026-06-26T16:35:28.341Z",
+      "updated_at": "2026-06-26T16:35:28.341Z"
+    }
+  ],
+  "future_paths": [
+    {
+      "id": "paths-raq871r5o-1782491728341",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "paths": [
+        {
+          "title": "Product Strategist",
+          "description": "You can hold both the big picture and the user's emotional reality simultaneously — which is extraordinarily rare and exactly what product strategy demands."
+        },
+        {
+          "title": "Innovation Researcher",
+          "description": "Your curiosity and adaptability make you a natural at emerging-technology research roles where the playbook has not been written yet."
+        }
+      ],
+      "created_at": "2026-06-26T16:35:28.341Z",
+      "updated_at": "2026-06-26T16:35:28.341Z"
+    }
+  ],
+  "future_predictions": [],
+  "growth_plans": [],
+  "weekly_reflections": [],
+  "challenge_responses": [
+    {
+      "id": "resp-arz2fv5aa-1782491650807",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-003",
+      "raw_response": {
+        "selected": "north-star",
+        "challenge_title": "The Infinite Backlog"
+      },
+      "domain": "prioritization",
+      "created_at": "2026-06-26T16:34:10.807Z"
+    },
+    {
+      "id": "resp-tgbgp0t4l-1782491657986",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-006",
+      "raw_response": {
+        "selected": "call",
+        "challenge_title": "The Vision War"
+      },
+      "domain": "leadership",
+      "created_at": "2026-06-26T16:34:17.986Z"
+    },
+    {
+      "id": "resp-zd1ebf36h-1782491663855",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-007",
+      "raw_response": {
+        "selected": "full-pivot",
+        "challenge_title": "The Pivot Moment"
+      },
+      "domain": "strategy",
+      "created_at": "2026-06-26T16:34:23.855Z"
+    },
+    {
+      "id": "resp-86o24yg55-1782491671162",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-008",
+      "raw_response": {
+        "ranked": [
+          "Partner with a big name (low revenue, massive credibility)",
+          "Acquire a tiny competitor to absorb their talent and tech",
+          "Enter a new market that looks underserved",
+          "Double down on your best-performing existing product",
+          "Hire a senior person you've been chasing for years"
+        ],
+        "challenge_title": "The Opportunity Cost"
+      },
+      "domain": "decision_making",
+      "created_at": "2026-06-26T16:34:31.162Z"
+    },
+    {
+      "id": "resp-tigwnkwoc-1782491679485",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-019",
+      "raw_response": {
+        "ranked": [
+          "Map each stakeholder's real incentive — not what they say, what they want",
+          "Escalate to the single decision-maker above them all",
+          "Propose a framework that makes the trade-offs explicit and forces a group decision",
+          "Create a living document that tracks each priority and its current status visibly",
+          "Find the two stakeholders with the most influence and align them first"
+        ],
+        "challenge_title": "The Stakeholder Maze"
+      },
+      "domain": "stakeholder_management",
+      "created_at": "2026-06-26T16:34:39.485Z"
+    },
+    {
+      "id": "resp-xn80a5bbh-1782491687859",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-021",
+      "raw_response": {
+        "ranked": [
+          "Qualitative user feedback — real humans, real pain",
+          "Find a fourth data source to break the tie",
+          "Your intuition — you have context the data doesn't capture",
+          "Quantitative data — it's objective and removes bias",
+          "Treat the conflict itself as the signal — something deeper is wrong"
+        ],
+        "challenge_title": "The Data Paradox"
+      },
+      "domain": "data_reasoning",
+      "created_at": "2026-06-26T16:34:47.859Z"
+    },
+    {
+      "id": "resp-fx142sv0l-1782491694476",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-029",
+      "raw_response": {
+        "selected": "expert",
+        "challenge_title": "Second Order Thinking"
+      },
+      "domain": "analytical_depth",
+      "created_at": "2026-06-26T16:34:54.476Z"
+    },
+    {
+      "id": "resp-j2pvm74lr-1782491703107",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-023",
+      "raw_response": {
+        "ranked": [
+          "Use the constraint as creative fuel — let it force innovation",
+          "Renegotiate the goal — explain why the constraint changes the outcome",
+          "Cut scope to 20% and do that 20% extraordinarily well",
+          "Find 3 unconventional ways to do more with the same resources",
+          "Partner with someone who has what you lack"
+        ],
+        "challenge_title": "Resource Drought"
+      },
+      "domain": "constraint_solving",
+      "created_at": "2026-06-26T16:35:03.107Z"
+    },
+    {
+      "id": "resp-0gotjp39g-1782491708996",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-001",
+      "raw_response": {
+        "selected": "align",
+        "challenge_title": "Scarce Resources"
+      },
+      "domain": "resource_management",
+      "created_at": "2026-06-26T16:35:08.997Z"
+    },
+    {
+      "id": "resp-ka1msqqiv-1782491715779",
+      "user_id": "mock-user-0gqo83frv",
+      "session_id": "id-wa5fyh1px-1782491646815",
+      "challenge_id": "s-009",
+      "raw_response": {
+        "selected": "equity",
+        "challenge_title": "The Talent War"
+      },
+      "domain": "team_building",
+      "created_at": "2026-06-26T16:35:15.779Z"
+    }
+  ],
+  "challenge_definitions": [],
+  "user_events": []
+}
