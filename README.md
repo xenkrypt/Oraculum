@@ -3,7 +3,6 @@
 Oraculum is an autonomous AI talent-finding agent for everyday people. This repository is the base architecture scaffold: Next.js App Router, TypeScript, TailwindCSS, Supabase Auth, Supabase Postgres tables, and route handlers for the core data lifecycle.
 
 ## Architecture
-
 - `app/` contains the App Router pages and API route handlers.
 - `components/` contains small client components for auth status, login/signup, and starting a session.
 - `lib/supabase/` contains browser and server Supabase clients.
@@ -14,7 +13,6 @@ Oraculum is an autonomous AI talent-finding agent for everyday people. This repo
 The current backend uses Next.js Route Handlers instead of a separate Express app. This keeps the first stage simple while still giving the frontend typed HTTP endpoints.
 
 ## Data Model
-
 The migration creates:
 
 - `users`: public profile row linked to `auth.users`.
@@ -28,7 +26,6 @@ The migration creates:
 Row-level security restricts user-owned records to `auth.uid()`. Challenge definitions are readable by authenticated users when active.
 
 ## API Routes
-
 - `POST /api/sessions`: create an authenticated challenge session.
 - `GET /api/sessions`: list the authenticated user's sessions.
 - `POST /api/challenge-responses`: store a raw challenge response.
@@ -43,7 +40,6 @@ Row-level security restricts user-owned records to `auth.uid()`. Challenge defin
 AI integration is intentionally not implemented yet. The comments in the talent profile and future paths routes mark where later scoring, synthesis, and LLM-backed generation can write structured outputs.
 
 ## Local Setup
-
 1. Install dependencies:
 
 ```bash
